@@ -1,0 +1,28 @@
+name: Java hello
+
+on:
+  push:
+    branches: [branch1]
+  pull_request:
+    branches: [branch1]
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    - name: Compile Java program
+      run: javac hello.java
+
+    - name: Run Java program
+      run: java hello
+
